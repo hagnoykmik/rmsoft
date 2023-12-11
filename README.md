@@ -102,7 +102,13 @@ status: 201
 **response**
 
 ```json
+성공
 status: 201
+{
+    "book_id": 1,
+    "title": "세이노의 가르침",
+    "is_borrow": 0
+}
 ```
 
 ### 도서 수정
@@ -112,7 +118,7 @@ request
 ```json
 {
     "bookId": 1,
-    "title": "더 마인드", // 변경할 값만 보낸다
+    "title": "더 마인드", 
     "isBorrow": 0
 }
 ```
@@ -120,6 +126,7 @@ request
 response
 
 ```json
+성공
 status: 200
 
 {
@@ -134,6 +141,9 @@ status: 200
 **response**
 
 ```json
+성공
+status: 200
+
 {
     {
          "loanId": 7,
@@ -166,6 +176,8 @@ status: 200
 **response**
 
 ```json
+성공
+status: 201
 {
     "loanId": 7,
     "loanDate": "2023-12-11T21:45:34.522",
@@ -189,6 +201,8 @@ status: 200
 **response**
 
 ```json
+성공
+status: 200
 {
     "loanId": 2,
     "loanDate": "2023-12-10T00:00:00",
