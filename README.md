@@ -1,6 +1,7 @@
 # RM 소프트
 
 <aside>
+	
 💡 주제 : 도서관리 시스템
 
 산출물 : ERD, 테이블 정의서, 시스템 구성도, 기능정의서, github( 본인의 개발위치 ), AWS 구성 내역 사진 ( Free tier를 이용 ), AWS 내부 구축 내용
@@ -67,9 +68,9 @@
 
 ```json
 {
-	"name": "김경아",
-	"email": "rlaryddk1221@gmail.com",
-	"password": "1234"
+    "name": "김경아",
+    "email": "rlaryddk1221@gmail.com",
+    "password": "1234"
 }
 ```
 
@@ -93,8 +94,8 @@ status: 201
 
 ```json
 {
-	"title": "세이노의 가르침",
-	"is_borrow": 0
+    "title": "세이노의 가르침",
+    "is_borrow": 0
 }
 ```
 
@@ -110,9 +111,9 @@ request
 
 ```json
 {
-	"bookId": 1,
-	"title": "더 마인드", // 변경할 값만 보낸다
-	"isBorrow": 0
+    "bookId": 1,
+    "title": "더 마인드", // 변경할 값만 보낸다
+    "isBorrow": 0
 }
 ```
 
@@ -122,9 +123,9 @@ response
 status: 200
 
 {
-	"bookId": 1,
-	"title": "더 마인드", 
-	"isBorrow": 0
+    "bookId": 1,
+    "title": "더 마인드", 
+    "isBorrow": 0
 }
 ```
 
@@ -134,20 +135,20 @@ status: 200
 
 ```json
 {
-	{
-    "loanId": 7,
-    "loanDate": "2023-12-11T21:45:34.522",
-    "returnDate": null,
-    "userId": 1,
-    "bookId": 1
-	},
-	{
-    "loanId": 2,
-    "loanDate": "2023-12-10T00:00:00",
-    "returnDate": "2023-12-11T22:32:27.659",
-    "userId": 2,
-    "bookId": 1
-	}
+    {
+         "loanId": 7,
+         "loanDate": "2023-12-11T21:45:34.522",
+         "returnDate": null,
+         "userId": 1,
+	 "bookId": 1
+    },
+    {
+    	"loanId": 2,
+    	"loanDate": "2023-12-10T00:00:00",
+    	"returnDate": "2023-12-11T22:32:27.659",
+    	"userId": 2,
+    	"bookId": 1
+    }
 }
 ```
 
@@ -157,8 +158,8 @@ status: 200
 
 ```json
 {
-	"userId": 1,
-	"bookId": 1
+    "userId": 1,
+    "bookId": 1
 }
 ```
 
@@ -180,8 +181,8 @@ status: 200
 
 ```json
 {
-	"userId": 1,
-	"bookId": 1
+    "userId": 1,
+    "bookId": 1
 }
 ```
 
