@@ -47,4 +47,13 @@ public class Loan {
                 .build();
     }
 
+    /**
+     * 반납 일자 추가
+     */
+    public Loan update(LocalDateTime returnDate) {
+        this.returnDate = returnDate;
+
+        return this;
+    }
+
 }

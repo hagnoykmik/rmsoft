@@ -18,6 +18,9 @@ public class UserServiceImpl implements UserService{
 
     private final UserRepository userRepository;
 
+    /**
+     * 회원 가입
+     */
     @Override
     @Transactional
     public CreateUserResponse createUser(CreateUserRequest request) {

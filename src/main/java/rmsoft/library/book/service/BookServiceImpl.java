@@ -22,6 +22,9 @@ public class BookServiceImpl implements BookService{
 
     private final BookRepository bookRepository;
 
+    /**
+     * 도서 생성
+     */
     @Override
     @Transactional
     public CreateBookResponse createBook(CreateBookRequest request) {
@@ -35,6 +38,9 @@ public class BookServiceImpl implements BookService{
 
     }
 
+    /**
+     * 도서 수정
+     */
     @Override
     @Transactional
     public UpdateBookResponse updateBook(UpdateBookRequest request, Long bookId) {
