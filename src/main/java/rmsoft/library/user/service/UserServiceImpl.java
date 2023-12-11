@@ -3,16 +3,18 @@ package rmsoft.library.user.service;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import rmsoft.library.user.dto.CreateUserRequest;
 import rmsoft.library.user.dto.CreateUserResponse;
 import rmsoft.library.user.entity.User;
 import rmsoft.library.user.repository.UserRepository;
 
-import javax.transaction.Transactional;
+
 
 @Service
 @RequiredArgsConstructor
 @Slf4j
+@Transactional(readOnly = true)
 public class UserServiceImpl implements UserService{
 
     private final UserRepository userRepository;

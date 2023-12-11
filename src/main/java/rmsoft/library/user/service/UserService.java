@@ -4,5 +4,5 @@ import rmsoft.library.user.dto.CreateUserRequest;
 import rmsoft.library.user.dto.CreateUserResponse;
 
 public interface UserService {
-    CreateUserResponse createUser(CreateUserRequest createUserRequest);  // 회원가입
+    CreateUserResponse createUser(CreateUserRequest request);  // 회원가입
 }
