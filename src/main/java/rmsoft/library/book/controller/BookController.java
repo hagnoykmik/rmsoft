@@ -4,12 +4,11 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import rmsoft.library.book.dto.CreateBookRequest;
 import rmsoft.library.book.dto.CreateBookResponse;
+import rmsoft.library.book.dto.UpdateBookRequest;
+import rmsoft.library.book.dto.UpdateBookResponse;
 import rmsoft.library.book.service.BookService;
 
 @RestController
@@ -28,6 +27,18 @@ public class BookController {
         CreateBookResponse book = bookService.createBook(request);
         return ResponseEntity.status(201).body(book);
 
+    }
+
+    /**
+     * 도서 수정
+     */
+    @PatchMapping("/{bookId}")
+    public ResponseEntity<UpdateBookResponse> updateBook(
+            @RequestBody @Validated UpdateBookRequest request,
+            @PathVariable("bookId") Long bookId)
+    {
+        UpdateBookResponse book = bookService.updateBook(request, bookId);
+        return ResponseEntity.status(200).body(book);
     }
 
 }

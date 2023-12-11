@@ -2,6 +2,7 @@ package rmsoft.library.book.entity;
 
 import lombok.*;
 import rmsoft.library.book.dto.CreateBookRequest;
+import rmsoft.library.book.dto.UpdateBookRequest;
 import rmsoft.library.loan.entity.Loan;
 
 import javax.persistence.*;
@@ -37,6 +38,16 @@ public class Book {
                 .title(request.getTitle())
                 .isBorrow(request.isBororow())
                 .build();
+    }
+
+    /**
+     * 도서 정보 수정
+     */
+    public Book updateBook(String title, boolean isBorrow) {
+        this.title = title;
+        this.isBorrow = isBorrow;
+
+        return this;
     }
 
 }
