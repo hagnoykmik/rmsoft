@@ -14,7 +14,7 @@ import rmsoft.library.book.service.BookService;
 @RestController
 @RequiredArgsConstructor
 @Slf4j
-@RequestMapping("/book")
+@RequestMapping("/books")
 public class BookController {
 
     private final BookService bookService;

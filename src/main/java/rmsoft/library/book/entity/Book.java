@@ -50,4 +50,17 @@ public class Book {
         return this;
     }
 
+    /**
+     * 도서 대출 여부 수정
+     */
+    public Book updateIsBorrow() {
+        if (this.isBorrow) {
+            this.isBorrow = false;
+        } else {
+            this.isBorrow = true;
+        }
+
+        return this;
+    }
+
 }

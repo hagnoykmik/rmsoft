@@ -15,7 +15,7 @@ import rmsoft.library.user.service.UserService;
 @RestController
 @RequiredArgsConstructor
 @Slf4j
-@RequestMapping("/user")
+@RequestMapping("/users")
 public class UserController {
 
     private final UserService userService;
