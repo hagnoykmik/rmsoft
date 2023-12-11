@@ -6,16 +6,15 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import rmsoft.library.book.entity.Book;
 import rmsoft.library.book.repository.BookRepository;
-import rmsoft.library.loan.dto.CreateLoanRequest;
-import rmsoft.library.loan.dto.CreateLoanResponse;
-import rmsoft.library.loan.dto.UpdateLoanRequest;
-import rmsoft.library.loan.dto.UpdateLoanResponse;
+import rmsoft.library.loan.dto.*;
 import rmsoft.library.loan.entity.Loan;
 import rmsoft.library.loan.repository.LoanRepository;
 import rmsoft.library.user.entity.User;
 import rmsoft.library.user.repository.UserRepository;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 
@@ -28,6 +27,23 @@ public class LoanServiceImpl implements LoanService{
     private final UserRepository userRepository;
     private final BookRepository bookRepository;
     private final LoanRepository loanRepository;
+
+//    /**
+//     * 대출 이력 조회
+//     */
+//    @Override
+//    public List<FindLoanInstance> findLoansByBookId(Long bookId) {
+//        List<Loan> loanList = loanRepository.findLoansByBookId(bookId);
+//
+//        List<FindLoanInstance> loans = new ArrayList<>();
+//
+//        for (Loan loan : loanList) {
+//
+//            loans.add(FindLoanInstance.create(loan));
+//        }
+//
+//        return loans;
+//    }
 
     /**
      * 도서 대출

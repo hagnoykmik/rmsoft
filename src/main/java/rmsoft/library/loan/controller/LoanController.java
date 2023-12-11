@@ -4,11 +4,10 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import rmsoft.library.loan.dto.CreateLoanRequest;
-import rmsoft.library.loan.dto.CreateLoanResponse;
-import rmsoft.library.loan.dto.UpdateLoanRequest;
-import rmsoft.library.loan.dto.UpdateLoanResponse;
+import rmsoft.library.loan.dto.*;
 import rmsoft.library.loan.service.LoanService;
+
+import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
@@ -17,6 +16,16 @@ import rmsoft.library.loan.service.LoanService;
 public class LoanController {
 
     private final LoanService loanService;
+
+    /**
+     * 대출이력조회
+     */
+    @GetMapping("/{bookId}")
+    public ResponseEntity<FindLoansByBookIdResponse> findLoansByBookId(@PathVariable("bookId") Long bookId) {
+        List<FindLoanInstance> loans = loanService.findLoansByBookId(bookId);
+        FindLoansByBookIdResponse loanList = new FindLoansByBookIdResponse(loans);
+        return ResponseEntity.status(200).body(loanList);
+    }
 
     /**
      * 대출 처리
