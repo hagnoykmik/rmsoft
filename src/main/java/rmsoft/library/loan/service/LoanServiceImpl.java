@@ -28,22 +28,22 @@ public class LoanServiceImpl implements LoanService{
     private final BookRepository bookRepository;
     private final LoanRepository loanRepository;
 
-//    /**
-//     * 대출 이력 조회
-//     */
-//    @Override
-//    public List<FindLoanInstance> findLoansByBookId(Long bookId) {
-//        List<Loan> loanList = loanRepository.findLoansByBookId(bookId);
-//
-//        List<FindLoanInstance> loans = new ArrayList<>();
-//
-//        for (Loan loan : loanList) {
-//
-//            loans.add(FindLoanInstance.create(loan));
-//        }
-//
-//        return loans;
-//    }
+    /**
+     * 대출 이력 조회
+     */
+    @Override
+    public List<FindLoanInstance> findLoansByBookId(Long bookId) {
+        List<Loan> loanList = loanRepository.findLoansByBookId(bookId);
+
+        List<FindLoanInstance> loans = new ArrayList<>();
+
+        for (Loan loan : loanList) {
+
+            loans.add(FindLoanInstance.create(loan));
+        }
+
+        return loans;
+    }
 
     /**
      * 도서 대출
@@ -65,7 +65,11 @@ public class LoanServiceImpl implements LoanService{
                         () -> new IllegalStateException("존재하는 도서가 아닙니다.")
                 );
 
-        // book 상태 업데이트
+        // book 상태 체크
+        if (book.isBorrow()) {
+            throw new IllegalStateException("이미 대출중인 도서입니다.");
+        }
+        // 빌릴 수 있으면 대출
         Book borrowedBook = book.updateIsBorrow();
 
         // db에 저장
@@ -102,7 +106,7 @@ public class LoanServiceImpl implements LoanService{
 
         // 반납일자 추가
         // bookId로 대출 테이블에서 대출 찾기
-        Loan loan = loanRepository.findByBookId(bookId)
+        Loan loan = loanRepository.findByBookIdAndUserIdAndReturnDateIsNull(bookId, userId)
                 .orElseThrow(
                         () -> new IllegalStateException("대출 목록에 해당 도서가 없습니다.")
                 );
