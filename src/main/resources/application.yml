@@ -1,18 +1,30 @@
 spring:
   datasource:
-    url:  jdbc:h2:tcp://localhost/~/library
-    username: sa
-    password:
-    driver-class-name: org.h2.Driver
+#    개발용
+#    url:  jdbc:h2:tcp://localhost/~/library
+#    username: sa
+#    password:
+#    driver-class-name: org.h2.Driver
+
+#  mysql
+    url: ENC(z0VYgbC7xcDpnz91VGN1GjbyT9y0vRep4sR23yeP242+nvebL1e5aY20ETHjphrEMgDvpmJOnHRu4YDQSBifnTtMFKLfwuABI3jCJPaZZrL8ETnnm6Ltww==)
+    username: ENC(XxBIG+bpUHW9EnecJIWLHw==)
+    password: ENC(QhbRtSFpaNRqvnl5sjs58Q==)
+    driver-class-name: com.mysql.cj.jdbc.Driver
 
   jpa:
     hibernate:
       ddl-auto: none
+    #      ddl-auto: create
     properties:
       hibernate:
-        #        show_sql: true
+#        dialect: org.hibernate.dialect.MySQL8Dialect
         format_sql: true
     open-in-view: false
+
+jasypt:
+  encryptor:
+    bean: jasyptStringEncryptor
 
 logging.level:
   org.hibernate.SQL: debug
