@@ -28,4 +28,5 @@ jasypt:
 
 logging.level:
   org.hibernate.SQL: debug
+  org.springframework.web: DEBUG
 #  org.hibernate.type: trace
