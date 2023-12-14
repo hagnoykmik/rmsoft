@@ -94,8 +94,7 @@ status: 201
 
 ```json
 {
-    "title": "세이노의 가르침",
-    "is_borrow": 0
+    "title": "세이노의 가르침"
 }
 ```
 
