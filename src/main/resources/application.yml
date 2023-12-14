@@ -6,11 +6,18 @@ spring:
 #    password:
 #    driver-class-name: org.h2.Driver
 
-#  mysql
-    url: ENC(z0VYgbC7xcDpnz91VGN1GjbyT9y0vRep4sR23yeP242+nvebL1e5aY20ETHjphrEMgDvpmJOnHRu4YDQSBifnTtMFKLfwuABI3jCJPaZZrL8ETnnm6Ltww==)
-    username: ENC(XxBIG+bpUHW9EnecJIWLHw==)
-    password: ENC(QhbRtSFpaNRqvnl5sjs58Q==)
+#  mysql(개발용)
+#    url: ENC(z0VYgbC7xcDpnz91VGN1GjbyT9y0vRep4sR23yeP242+nvebL1e5aY20ETHjphrEMgDvpmJOnHRu4YDQSBifnTtMFKLfwuABI3jCJPaZZrL8ETnnm6Ltww==)
+#    username: ENC(XxBIG+bpUHW9EnecJIWLHw==)
+#    password: ENC(QhbRtSFpaNRqvnl5sjs58Q==)
+#    driver-class-name: com.mysql.cj.jdbc.Driver
+
+# mysql(배포용)
+    url: ENC(7ljpAIveJXra33s/Q+tw2s8RDGVvItdQih3iGOmvEOUB2gThnPCv71ZK0V8kdpCcZ/GJ8SMeOL4N3vCewBFzQiMnv+wmVEmZJML7BGqZA/Hpof77Uq57NSfx9oz3aUdA)
+    username: ENC(Dj+xQfqGzbNu9ZzpvSWtBKolX8izoH25)
+    password: ENC(6DVqdWP+LourhJbMUWB0FQ==)
     driver-class-name: com.mysql.cj.jdbc.Driver
+
 
   jpa:
     hibernate:
