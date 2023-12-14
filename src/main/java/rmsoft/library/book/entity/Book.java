@@ -36,7 +36,7 @@ public class Book {
     public static Book create(CreateBookRequest request) {
         return Book.builder()
                 .title(request.getTitle())
-                .isBorrow(request.isBororow())
+                .isBorrow(false)
                 .build();
     }
 
