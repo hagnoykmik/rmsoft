@@ -225,4 +225,5 @@ status: 200
 
 ## AWS 구성 내역 사진
 
-<img width="1100" alt="aaaaa" src="https://github.com/hagnoykmik/rmsoft/assets/109258144/6e6e9803-94f6-4f37-8115-b28429b9c596">
+<img width="1101" alt="제목 없음" src="https://github.com/hagnoykmik/rmsoft/assets/109258144/27ea0553-c475-463c-a359-97bcfa92b6c7">
+
