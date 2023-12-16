@@ -60,7 +60,7 @@
 
 ## REST API 문서
 
-<img width="627" alt="스크린샷 2023-12-12 012021" src="https://github.com/hagnoykmik/rmsoft/assets/109258144/282f9950-14c5-4a3e-99ba-bcce6db611d2">
+<img width="629" alt="스크린샷 2023-12-16 165828" src="https://github.com/hagnoykmik/rmsoft/assets/109258144/fc2385e6-a59e-4766-9272-4339ec4d848c">
 
 ### 회원가입
 
@@ -205,9 +205,9 @@ status: 200
 {
     "loanId": 2,
     "loanDate": "2023-12-10T00:00:00",
-    "returnDate": "2023-12-11T22:32:27.659",
-    "userId": 2,
-    "bookId": 2
+    "returnDate": "2023-12-11T22:32:27.659", // 반납 일자 생성 
+    "userId": 1,
+    "bookId": 1
 }
 ```
 
