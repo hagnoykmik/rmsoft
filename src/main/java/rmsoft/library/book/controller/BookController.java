@@ -32,7 +32,7 @@ public class BookController {
     /**
      * 도서 수정
      */
-    @PatchMapping("/{bookId}")
+    @PutMapping("/{bookId}")
     public ResponseEntity<UpdateBookResponse> updateBook(
             @RequestBody @Validated UpdateBookRequest request,
             @PathVariable("bookId") Long bookId)
