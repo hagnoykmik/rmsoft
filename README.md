@@ -134,6 +134,16 @@ status: 200
     "isBorrow": 0
 }
 ```
+```json
+실패
+status: 404
+
+{
+    "timestamp": "2023-12-19T00:33:40.066",
+    "status": "NOT_FOUND",
+    "message": "존재하지 않는 도서입니다."
+}
+```
 
 ### 대출 이력 조회
 
@@ -158,6 +168,16 @@ status: 200
     	"userId": 2,
     	"bookId": 1
     }
+}
+```
+```json
+실패
+status: 404
+
+{
+    "timestamp": "2023-12-19T00:31:58.293",
+    "status": "NOT_FOUND",
+    "message": "대출이력이 존재하지 않습니다."
 }
 ```
 
@@ -186,6 +206,7 @@ status: 201
 }
 ```
 
+
 ### 반납 처리
 
 **request**
@@ -194,6 +215,16 @@ status: 201
 {
     "userId": 1,
     "bookId": 1
+}
+```
+```json
+실패
+status: 404
+
+{
+    "timestamp": "2023-12-19T00:26:30.711",
+    "status": "NOT_FOUND",
+    "message": "존재하지 않는 도서입니다."
 }
 ```
 
