@@ -6,6 +6,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import rmsoft.library.book.entity.Book;
 import rmsoft.library.book.repository.BookRepository;
+import rmsoft.library.common.exception.CustomException;
+import rmsoft.library.common.exception.ErrorCode;
 import rmsoft.library.loan.dto.*;
 import rmsoft.library.loan.entity.Loan;
 import rmsoft.library.loan.repository.LoanRepository;
@@ -33,12 +35,18 @@ public class LoanServiceImpl implements LoanService{
      */
     @Override
     public List<FindLoanInstance> findLoansByBookId(Long bookId) {
+        // 도서 id로 도서 대출이력 찾기
         List<Loan> loanList = loanRepository.findLoansByBookId(bookId);
 
+        // 찾은 도서의 대출이력이 없을 때 예외 발생
+        if (loanList.isEmpty()) {
+            throw new CustomException(ErrorCode.NOT_FOUND_LOAN);
+        }
+
+        // 응답 dto 리스트에 넣어주기
         List<FindLoanInstance> loans = new ArrayList<>();
 
         for (Loan loan : loanList) {
-
             loans.add(FindLoanInstance.create(loan));
         }
 
@@ -55,19 +63,19 @@ public class LoanServiceImpl implements LoanService{
         Long userId = request.getUserId();
         User user = userRepository.findById(userId)
                 .orElseThrow(
-                        () -> new IllegalStateException("존재하는 회원이 아닙니다.")
+                        () -> new CustomException(ErrorCode.NOT_FOUND_USER)
                 );
 
         // bookId로 book 찾기
         Long bookId = request.getBookId();
         Book book = bookRepository.findById(bookId)
                 .orElseThrow(
-                        () -> new IllegalStateException("존재하는 도서가 아닙니다.")
+                        () -> new CustomException(ErrorCode.NOT_FOUND_BOOK)
                 );
 
         // book 상태 체크
         if (book.isBorrow()) {
-            throw new IllegalStateException("이미 대출중인 도서입니다.");
+            throw new CustomException(ErrorCode.ALREADY_BORROWED_BOOK);
         }
         // 빌릴 수 있으면 대출
         Book borrowedBook = book.updateIsBorrow();
@@ -91,14 +99,14 @@ public class LoanServiceImpl implements LoanService{
         Long userId = request.getUserId();
         User user = userRepository.findById(userId)
                 .orElseThrow(
-                        () -> new IllegalStateException("존재하는 회원이 아닙니다.")
+                        () -> new CustomException(ErrorCode.NOT_FOUND_USER)
                 );
 
         // bookId로 book 찾기
         Long bookId = request.getBookId();
         Book book = bookRepository.findById(bookId)
                 .orElseThrow(
-                        () -> new IllegalStateException("존재하는 도서가 아닙니다.")
+                        () -> new CustomException(ErrorCode.NOT_FOUND_BOOK)
                 );
 
         // book 상태 업데이트
