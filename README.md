@@ -205,6 +205,15 @@ status: 201
     "bookId": 1
 }
 ```
+```json
+실패
+status: 409
+{
+    "timestamp": "2023-12-19T00:40:31.328",
+    "status": "CONFLICT",
+    "message": "이미 대출중인 도서입니다."
+}
+```
 
 
 ### 반납 처리
