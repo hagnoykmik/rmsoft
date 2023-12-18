@@ -10,6 +10,8 @@ import rmsoft.library.book.dto.UpdateBookRequest;
 import rmsoft.library.book.dto.UpdateBookResponse;
 import rmsoft.library.book.entity.Book;
 import rmsoft.library.book.repository.BookRepository;
+import rmsoft.library.common.exception.CustomException;
+import rmsoft.library.common.exception.ErrorCode;
 
 import java.util.Optional;
 
@@ -46,7 +48,7 @@ public class BookServiceImpl implements BookService{
     public UpdateBookResponse updateBook(UpdateBookRequest request, Long bookId) {
         // bookId로 책 가져오기
         Book book = bookRepository.findById(bookId).orElseThrow(
-                () -> new IllegalStateException("존재하지 않는 책입니다.")
+                () -> new CustomException(ErrorCode.NOT_FOUND_BOOK)
         );
 
         // db에 정보 수정
