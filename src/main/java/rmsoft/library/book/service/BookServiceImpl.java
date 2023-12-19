@@ -52,7 +52,7 @@ public class BookServiceImpl implements BookService{
         );
 
         // db에 정보 수정
-        Book updateBook = book.updateBook(request.getTitle(), request.isBororow());  // -> 변경감지해서 db 변경
+        Book updateBook = book.updateBook(request.getTitle(), request.isBorrow());  // -> 변경감지해서 db 변경
 
         // 응답 dto로 반환
         UpdateBookResponse response = UpdateBookResponse.create(updateBook);
