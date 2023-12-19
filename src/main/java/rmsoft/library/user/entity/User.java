@@ -26,8 +26,6 @@ public class User {
 
     private String password;
 
-    @OneToMany(mappedBy = "user")
-    private List<Loan> loans = new ArrayList<>();
 
     //==생성 메서드==//
     public static User create(CreateUserRequest request) {

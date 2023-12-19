@@ -27,10 +27,6 @@ public class Book {
     @Column(name = "is_borrow")
     private boolean isBorrow;
 
-//    대출 엔티티와 일대다관계(일)
-    @OneToMany(mappedBy = "book")
-    private List<Loan> loans = new ArrayList<>();
-
 
     //==생성 메서드==//
     public static Book create(CreateBookRequest request) {
