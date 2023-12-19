@@ -109,6 +109,11 @@ public class LoanServiceImpl implements LoanService{
                         () -> new CustomException(ErrorCode.NOT_FOUND_BOOK)
                 );
 
+        // 이미 반납처리 된 도서일 때
+        if (!book.isBorrow()) {
+            throw new CustomException(ErrorCode.ALREADY_RETURNED_BOOK);
+        }
+
         // book 상태 업데이트
         Book borrowedBook = book.updateIsBorrow();
 
