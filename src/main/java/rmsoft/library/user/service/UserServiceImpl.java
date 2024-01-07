@@ -4,10 +4,14 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import rmsoft.library.common.exception.CustomException;
+import rmsoft.library.common.exception.ErrorCode;
 import rmsoft.library.user.dto.CreateUserRequest;
 import rmsoft.library.user.dto.CreateUserResponse;
 import rmsoft.library.user.entity.User;
 import rmsoft.library.user.repository.UserRepository;
+
+import java.util.Optional;
 
 
 @Service
@@ -24,6 +28,12 @@ public class UserServiceImpl implements UserService{
     @Override
     @Transactional
     public CreateUserResponse createUser(CreateUserRequest request) {
+        // 이메일 중복 검사
+        Optional<User> findUser = userRepository.findByEmail(request.getEmail());
+        if (findUser.isPresent()) {
+            throw new CustomException(ErrorCode.ALREADY_EXISTED_USER);
+        }
+
         // db에 저장
         User user = User.create(request);
         userRepository.save(user);

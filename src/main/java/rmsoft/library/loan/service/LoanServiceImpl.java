@@ -95,6 +95,12 @@ public class LoanServiceImpl implements LoanService{
     @Override
     @Transactional
     public UpdateLoanResponse updateLoan(UpdateLoanRequest request) {
+        // userId와 bookId로 대출 이력 존재하는지 찾기
+        Loan findLoan = loanRepository.findByUserIdAndBookId(request.getUserId(), request.getBookId())
+                .orElseThrow(
+                        () -> new CustomException(ErrorCode.NOT_FOUND_LOAN)
+                );
+
         // userId로 user 찾기
         Long userId = request.getUserId();
         User user = userRepository.findById(userId)
@@ -115,13 +121,13 @@ public class LoanServiceImpl implements LoanService{
         }
 
         // book 상태 업데이트
-        Book borrowedBook = book.updateIsBorrow();
+        book.updateIsBorrow();
 
         // 반납일자 추가
         // bookId로 대출 테이블에서 대출 찾기
         Loan loan = loanRepository.findByBookIdAndUserIdAndReturnDateIsNull(bookId, userId)
                 .orElseThrow(
-                        () -> new IllegalStateException("대출 목록에 해당 도서가 없습니다.")
+                        () -> new CustomException(ErrorCode.ALREADY_BORROWED_BOOK)
                 );
 
         LocalDateTime returnDate = LocalDateTime.now();

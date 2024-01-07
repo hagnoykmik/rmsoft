@@ -10,5 +10,5 @@ public class UpdateBookRequest {
     private String title;
 
     @NotNull
-    private boolean isBororow;
+    private boolean isBorrow;
 }
