@@ -87,6 +87,16 @@ status: 201
     "password": "1234"
 }
 ```
+```json
+실패
+status: 409
+
+{
+    "timestamp": "2024-01-07T19:26:42.303",
+    "status": "CONFLICT",
+    "message": "이미 가입된 유저입니다."
+}
+```
 
 ### 도서생성
 
