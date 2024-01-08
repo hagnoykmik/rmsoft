@@ -38,11 +38,6 @@ public class LoanServiceImpl implements LoanService{
         // 도서 id로 도서 대출이력 찾기
         List<Loan> loanList = loanRepository.findLoansByBookId(bookId);
 
-        // 찾은 도서의 대출이력이 없을 때 예외 발생
-        if (loanList.isEmpty()) {
-            throw new CustomException(ErrorCode.NOT_FOUND_LOAN);
-        }
-
         // 응답 dto 리스트에 넣어주기
         List<FindLoanInstance> loans = new ArrayList<>();
 
@@ -95,41 +90,17 @@ public class LoanServiceImpl implements LoanService{
     @Override
     @Transactional
     public UpdateLoanResponse updateLoan(UpdateLoanRequest request) {
-        // userId와 bookId로 대출 이력 존재하는지 찾기
-        Loan findLoan = loanRepository.findByUserIdAndBookId(request.getUserId(), request.getBookId())
+        // bookId와 userId로 대출 테이블에서 제일 최근 대출(return date가 null인 것) 찾기
+        Loan loan = loanRepository.findByBookIdAndUserIdAndReturnDateIsNull(request.getBookId(), request.getUserId())
                 .orElseThrow(
                         () -> new CustomException(ErrorCode.NOT_FOUND_LOAN)
                 );
 
-        // userId로 user 찾기
-        Long userId = request.getUserId();
-        User user = userRepository.findById(userId)
-                .orElseThrow(
-                        () -> new CustomException(ErrorCode.NOT_FOUND_USER)
-                );
-
-        // bookId로 book 찾기
-        Long bookId = request.getBookId();
-        Book book = bookRepository.findById(bookId)
-                .orElseThrow(
-                        () -> new CustomException(ErrorCode.NOT_FOUND_BOOK)
-                );
-
-        // 이미 반납처리 된 도서일 때
-        if (!book.isBorrow()) {
-            throw new CustomException(ErrorCode.ALREADY_RETURNED_BOOK);
-        }
-
         // book 상태 업데이트
+        Book book = loan.getBook();
         book.updateIsBorrow();
 
         // 반납일자 추가
-        // bookId로 대출 테이블에서 대출 찾기
-        Loan loan = loanRepository.findByBookIdAndUserIdAndReturnDateIsNull(bookId, userId)
-                .orElseThrow(
-                        () -> new CustomException(ErrorCode.ALREADY_BORROWED_BOOK)
-                );
-
         LocalDateTime returnDate = LocalDateTime.now();
         loan.update(returnDate);
 
