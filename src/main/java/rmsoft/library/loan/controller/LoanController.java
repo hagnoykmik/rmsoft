@@ -22,9 +22,8 @@ public class LoanController {
      */
     @GetMapping("/{bookId}")
     public ResponseEntity<FindLoansByBookIdResponse> findLoansByBookId(@PathVariable("bookId") Long bookId) {
-        List<FindLoanInstance> loans = loanService.findLoansByBookId(bookId);
-        FindLoansByBookIdResponse loanList = new FindLoansByBookIdResponse(loans);
-        return ResponseEntity.status(200).body(loanList);
+        FindLoansByBookIdResponse loans = loanService.findLoansByBookId(bookId);
+        return ResponseEntity.status(200).body(loans);
     }
 
     /**

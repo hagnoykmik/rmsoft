@@ -34,7 +34,13 @@ public class LoanServiceImpl implements LoanService{
      * 대출 이력 조회
      */
     @Override
-    public List<FindLoanInstance> findLoansByBookId(Long bookId) {
+    public FindLoansByBookIdResponse findLoansByBookId(Long bookId) {
+        // 존재하는 도서인지 확인
+        Book book = bookRepository.findById(bookId)
+                .orElseThrow(
+                        () -> new CustomException(ErrorCode.NOT_FOUND_BOOK)
+                );
+
         // 도서 id로 도서 대출이력 찾기
         List<Loan> loanList = loanRepository.findLoansByBookId(bookId);
 
@@ -45,7 +51,9 @@ public class LoanServiceImpl implements LoanService{
             loans.add(FindLoanInstance.create(loan));
         }
 
-        return loans;
+        FindLoansByBookIdResponse loanDtoList = new FindLoansByBookIdResponse(loans);
+
+        return loanDtoList;
     }
 
     /**
