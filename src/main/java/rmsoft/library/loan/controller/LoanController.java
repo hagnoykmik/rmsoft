@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import rmsoft.library.loan.dto.*;
 import rmsoft.library.loan.service.LoanService;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -30,7 +31,7 @@ public class LoanController {
      * 대출 처리
      */
     @PostMapping
-    public ResponseEntity<CreateLoanResponse> createLoan(@RequestBody CreateLoanRequest request) {
+    public ResponseEntity<CreateLoanResponse> createLoan(@RequestBody @Valid CreateLoanRequest request) {
         CreateLoanResponse loan = loanService.createLoan(request);
         return ResponseEntity.status(201).body(loan);
     }
@@ -39,7 +40,7 @@ public class LoanController {
      * 반납 처리
      */
     @PatchMapping("/return")
-    public ResponseEntity<UpdateLoanResponse> updateLoan(@RequestBody UpdateLoanRequest request) {
+    public ResponseEntity<UpdateLoanResponse> updateLoan(@RequestBody @Valid UpdateLoanRequest request) {
         UpdateLoanResponse loan = loanService.updateLoan(request);
         return ResponseEntity.status(200).body(loan);
 
