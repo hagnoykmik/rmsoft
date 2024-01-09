@@ -24,7 +24,7 @@ public class UserController {
      * 회원가입
      */
     @PostMapping
-    public ResponseEntity<CreateUserResponse> createUser(@RequestBody @Validated CreateUserRequest request) {
+    public ResponseEntity<CreateUserResponse> createUser(@RequestBody CreateUserRequest request) {
         CreateUserResponse user = userService.createUser(request);
         return ResponseEntity.status(201).body(user);
     }
