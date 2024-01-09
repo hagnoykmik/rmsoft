@@ -11,6 +11,8 @@ import rmsoft.library.book.dto.UpdateBookRequest;
 import rmsoft.library.book.dto.UpdateBookResponse;
 import rmsoft.library.book.service.BookService;
 
+import javax.validation.Valid;
+
 @RestController
 @RequiredArgsConstructor
 @Slf4j
@@ -23,7 +25,7 @@ public class BookController {
      * 도서 생성
      */
     @PostMapping
-    public ResponseEntity<CreateBookResponse> createBook(@RequestBody CreateBookRequest request) {
+    public ResponseEntity<CreateBookResponse> createBook(@RequestBody @Valid CreateBookRequest request) {
         CreateBookResponse book = bookService.createBook(request);
         return ResponseEntity.status(201).body(book);
 
@@ -34,7 +36,7 @@ public class BookController {
      */
     @PutMapping("/{bookId}")
     public ResponseEntity<UpdateBookResponse> updateBook(
-            @RequestBody UpdateBookRequest request,
+            @RequestBody @Valid UpdateBookRequest request,
             @PathVariable("bookId") Long bookId)
     {
         UpdateBookResponse book = bookService.updateBook(request, bookId);

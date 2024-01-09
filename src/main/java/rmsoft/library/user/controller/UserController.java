@@ -12,6 +12,8 @@ import rmsoft.library.user.dto.CreateUserRequest;
 import rmsoft.library.user.dto.CreateUserResponse;
 import rmsoft.library.user.service.UserService;
 
+import javax.validation.Valid;
+
 @RestController
 @RequiredArgsConstructor
 @Slf4j
@@ -24,7 +26,7 @@ public class UserController {
      * 회원가입
      */
     @PostMapping
-    public ResponseEntity<CreateUserResponse> createUser(@RequestBody CreateUserRequest request) {
+    public ResponseEntity<CreateUserResponse> createUser(@RequestBody @Valid CreateUserRequest request) {
         CreateUserResponse user = userService.createUser(request);
         return ResponseEntity.status(201).body(user);
     }
