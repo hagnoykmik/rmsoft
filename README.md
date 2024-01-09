@@ -180,16 +180,6 @@ status: 200
     }
 }
 ```
-```json
-실패
-status: 404
-
-{
-    "timestamp": "2023-12-19T00:31:58.293",
-    "status": "NOT_FOUND",
-    "message": "대출이력이 존재하지 않습니다."
-}
-```
 
 ### 대출 처리
 
@@ -248,16 +238,6 @@ status: 200
     "returnDate": "2023-12-11T22:32:27.659", // 반납 일자 생성 
     "userId": 1,
     "bookId": 1
-}
-```
-```json
-실패
-status: 404
-
-{
-    "timestamp": "2023-12-19T00:26:30.711",
-    "status": "NOT_FOUND",
-    "message": "존재하지 않는 도서입니다."
 }
 ```
 ```json
